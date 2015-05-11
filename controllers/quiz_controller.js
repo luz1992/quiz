@@ -1,8 +1,10 @@
 //GET /quizes/:id
+var models = require ('../models/models.js')
+
 exports.show = function(req, res){
-	models.Quiz.findAll().success(function(quiz){
-		res.render('quizes/show', {quiz: quiz})
-	})
+	models.Quiz.find(req.params.quizId).then(function(quiz){
+		res.render('quizes/show.ejs', {quiz: quiz})
+	});
 };
 	
 //GET /quizes
@@ -14,11 +16,11 @@ exports.index = function(req, res){
 //GET /quizes/:id/answer
 exports.answer = function(req, res){
 	models.Quiz.find(req.params.quizId).then(function(quiz){
-		if (req.query.respuesta ===quiz.respuesta){
-			res.render('quizes/answer',
+		if (req.query.respuesta === quiz.respuesta){
+			res.render('quizes/answer.ejs',
 				{quiz: quiz, respuesta: 'Correcto'});
 		} else{
-			res.render('quizes/answer',
+			res.render('quizes/answer.ejs',
 				{quiz: quiz, respuesta: 'Incorrecto'});
 		}
 	})
