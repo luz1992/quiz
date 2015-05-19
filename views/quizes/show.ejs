@@ -7,7 +7,7 @@
 <p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo comentario</button></a></p>
 
 <p><strong>Comentarios:</strong></p>
-<%for(index in quiz.Comments){%>
+<%for(index in quiz.Comments){%> npn
 <%if(quiz.Comments[index].publicado || session.user){%>
 <p>- <%=quiz.Comments[index].texto%>
 <%if(session.user && !quiz.Comments[index].publicado){%>
