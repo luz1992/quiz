@@ -26,6 +26,8 @@ exports.show = function(req, res) {
 res.render('quizes/show', { quiz: req.quiz, errors: []});
 }; // req.quiz: instancia de quiz cargada con autoload
 
+
+//MODIFICAR EL INDEX CON UN QUERY PARA EN VEZ DE FINDALL() QUE BUSQUE EL QUERY QUE LE PASAMOS: LO QUE HEMOS INTRODUCIDO EN EL CAJON
 	
 //GET /quizes
 exports.index = function(req, res) {
