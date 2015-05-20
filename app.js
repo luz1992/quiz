@@ -24,6 +24,24 @@ app.use(cookieParser('Quiz 2015'));
 app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+//Auto-logout
+app.use(function(req,res,next){
+ var tiempoMax = 120000;
+ var ultAct = new Date().getTime();
+ if (req.session.user){
+ if ((ultAct - req.session.user.time) > (tiempoMax)){
+ delete req.session.user;
+ res.redirect("/login");
+ }else {
+ req.session.user.time = new Date().getTime();
+ next();}
+ }else{
+ next();}
+});
+
+
 // Helpers dinamicos:
 app.use(function(req, res, next) {
 // si no existe lo inicializa
