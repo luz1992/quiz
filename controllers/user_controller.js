@@ -1,5 +1,20 @@
 // Definicion del modelo de Quiz con validación
 var models = require('../models/models.js');
+// MW que permite acciones solamente si el usuario objeto
+// pertenece con el usuario logeado o si es cuenta admin
+
+exports.ownershipRequired = function(req,res,next){
+	var objUser = req.quiz.id;
+	var logUser = req.session.user.id;
+	var isAdmin = req.session.user.isAdmin;
+
+	if (isAdmin || objUser === logUser){
+		next();
+	} else {
+		res.redirect('/');
+	}
+};
+
 // Autoload :userId
 
 exports.load = function(req,res,next,userId){
