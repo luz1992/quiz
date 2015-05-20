@@ -7,6 +7,10 @@
    </head>
    <body>
      <h2>Quiz: el juego de las preguntas</h2>
+     <%if (quiz.image){%>
+    <p><img class="quiz_img" src="/media/<%= quiz.image%>"></p>
+    <%}%>
+
  
      <form method="get" action="/quizes/<%= quiz.id %>/answer">
        Pregunta: <%= quiz.pregunta %> <p>
